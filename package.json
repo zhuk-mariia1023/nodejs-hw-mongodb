@@ -1,24 +1,17 @@
 {
   "name": "nodejs-hw-mongodb",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "lint": "eslint src/**/*.js",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zhuk-mariia1023/nodejs-hw-mongodb.git"
   },
   "keywords": [],
   "author": "Mariia Zhuk",
   "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/zhuk-mariia1023/nodejs-hw-mongodb/issues"
-  },
-  "homepage": "https://github.com/zhuk-mariia1023/nodejs-hw-mongodb#readme",
   "devDependencies": {
     "@eslint/js": "^9.33.0",
     "eslint": "^9.33.0",
