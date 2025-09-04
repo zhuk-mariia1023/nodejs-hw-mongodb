@@ -1,0 +1,49 @@
+post:
+  tags:
+    - Auth
+  summary: Login user
+  operationId: loginUser
+  description: Login with email & password. Sets httpOnly cookies (sessionId, refreshToken) and returns accessToken in response data.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - email
+            - password
+          properties:
+            email:
+              type: string
+              format: email
+              example: 'mariia@example.com'
+            password:
+              type: string
+              example: 'StrongPassword123!'
+  responses:
+    '200':
+      description: Successfully logged in an user!
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - message
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: Successfully logged in an user!
+              data:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    example: 'random-access-token-string'
+    '401':
+      description: Unauthorized

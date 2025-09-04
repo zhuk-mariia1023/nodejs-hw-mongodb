@@ -1,0 +1,63 @@
+tags:
+  - Contacts
+summary: Create a contact
+operationId: createContact
+description: Create a new contact. Body should be sent as multipart/form-data (photo — binary).
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - phoneNumber
+          - contactType
+        properties:
+          name:
+            type: string
+            example: 'Donna Zhuk'
+          phoneNumber:
+            type: string
+            example: '+310000000005'
+          email:
+            type: string
+            format: email
+            example: 'donna@example.com'
+          isFavourite:
+            type: boolean
+            example: false
+          contactType:
+            type: string
+            enum: [work, home, personal]
+            example: home
+          photo:
+            type: string
+            format: binary
+            description: Upload image file
+responses:
+  '201':
+    description: Successfully created a contact!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully created a contact!
+            data:
+              $ref: '../../components/schemas/contact.yaml'
+  '400':
+    description: Bad request (validation error)
+  '401':
+    $ref: '../../components/responses/401.yaml'

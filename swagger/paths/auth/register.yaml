@@ -1,0 +1,62 @@
+post:
+  tags:
+    - Auth
+  summary: Register a new user
+  operationId: registerUser
+  description: Register user with name, email and password.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - name
+            - email
+            - password
+          properties:
+            name:
+              type: string
+              example: 'Mariia Zhuk'
+            email:
+              type: string
+              format: email
+              example: 'mariia@example.com'
+            password:
+              type: string
+              example: 'StrongPassword123!'
+  responses:
+    '201':
+      description: User registered successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - message
+              - data
+            properties:
+              status:
+                type: integer
+                example: 201
+              message:
+                type: string
+                example: Successfully registered a user!
+              data:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: '68b2d9351e0ad28249dbcf11'
+                  name:
+                    type: string
+                    example: 'Mariia Zhuk'
+                  email:
+                    type: string
+                    format: email
+                    example: 'mariia@example.com'
+    '400':
+      description: Bad Request (validation errors)
+    '409':
+      description: Email in use

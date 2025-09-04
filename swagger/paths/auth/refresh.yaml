@@ -1,0 +1,34 @@
+post:
+  tags:
+    - Auth
+  summary: Refresh access token
+  operationId: refreshUserSession
+  description: |
+    Refresh access token using cookies: the route expects httpOnly cookies `sessionId` and `refreshToken`.
+    (In Postman / Swagger UI you can send cookies or call this endpoint after login.)
+  responses:
+    '200':
+      description: Successfully refreshed a session!
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - status
+              - message
+              - data
+            properties:
+              status:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: Successfully refreshed a session!
+              data:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    example: 'new-access-token'
+    '401':
+      description: Session not found or expired

@@ -1,0 +1,21 @@
+tags:
+  - Contacts
+summary: Delete a contact by id
+operationId: deleteContact
+description: Permanently delete a contact (owner only).
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: contactId
+    required: true
+    schema:
+      type: string
+    example: '68b354511b4e6fbf671877ad'
+responses:
+  '204':
+    description: Contact deleted successfully (No Content)
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'

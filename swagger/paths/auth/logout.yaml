@@ -1,0 +1,11 @@
+post:
+  tags:
+    - Auth
+  summary: Logout user
+  operationId: logoutUser
+  description: Logout — clears session cookies (sessionId, refreshToken) on the client and invalidates session on server.
+  responses:
+    '204':
+      description: Successfully logged out (No Content)
+    '401':
+      description: Unauthorized

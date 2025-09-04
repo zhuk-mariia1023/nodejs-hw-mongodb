@@ -1,0 +1,107 @@
+tags:
+  - Contacts
+summary: Get list of contacts
+operationId: getContacts
+description: |
+  Returns a list of contacts for an authenticated user.
+security:
+  - bearerAuth: []
+parameters:
+  - in: query
+    name: page
+    schema:
+      type: integer
+    example: 1
+    description: Page number
+  - in: query
+    name: perPage
+    schema:
+      type: integer
+    example: 10
+    description: Items per page
+  - in: query
+    name: sortBy
+    schema:
+      type: string
+      enum:
+        [
+          _id,
+          name,
+          phoneNumber,
+          email,
+          isFavourite,
+          contactType,
+          createdAt,
+          updatedAt,
+        ]
+    description: Field to sort by (default _id)
+  - in: query
+    name: sortOrder
+    schema:
+      type: string
+      enum: [asc, desc]
+    description: Sort order (asc or desc)
+  - in: query
+    name: type
+    schema:
+      type: string
+      enum: [work, home, personal]
+    description: Filter by contact type (параметр `type` у коді)
+  - in: query
+    name: isFavourite
+    schema:
+      type: boolean
+    description: Filter by isFavourite
+responses:
+  '200':
+    description: Successfully found contacts!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully found contacts!
+            data:
+              type: object
+              required:
+                - data
+                - page
+                - perPage
+                - totalItems
+                - totalPages
+                - hasNextPage
+                - hasPreviousPage
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../../components/schemas/contact.yaml'
+                page:
+                  type: integer
+                  example: 1
+                perPage:
+                  type: integer
+                  example: 10
+                totalItems:
+                  type: integer
+                  example: 3
+                totalPages:
+                  type: integer
+                  example: 1
+                hasNextPage:
+                  type: boolean
+                  example: false
+                hasPreviousPage:
+                  type: boolean
+                  example: false
+  '401':
+    $ref: '../../components/responses/401.yaml'
