@@ -11,10 +11,12 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "https://nodejs-hw-mongodb-zt2s.onrender.com",
+      "description": "Production server (Render)"
     },
     {
-      "url": "https://nodejs-hw-mongodb-zt2s.onrender.com"
+      "url": "http://localhost:3000",
+      "description": "Local development server"
     }
   ],
   "security": [
